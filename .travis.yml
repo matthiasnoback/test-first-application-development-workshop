@@ -1,13 +1,6 @@
-sudo: false
-
-language: php
-
-matrix:
-    include:
-        -   php: 7.4
-
 install:
-    - composer install --prefer-dist
+    - docker-compose pull
+    - bin/composer install --prefer-dist
 
 script:
-    - ./run_tests
+    - bin/run_tests
