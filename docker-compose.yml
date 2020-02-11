@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+    php:
+        image: matthiasnoback/test_first_application_development_workshop_php
+        build: docker/php/
+        volumes:
+            - ./:/app:cached
+        user: ${HOST_UID}:${HOST_GID}
+        environment:
+            WEB_HOSTNAME: web
+
+    composer:
+        image: composer:latest
+        volumes:
+            - ./:/app:cached
+            - ~/.composer:/tmp:cached
+        user: ${HOST_UID}:${HOST_GID}
+
+    web:
+        image: matthiasnoback/test_first_application_development_workshop_nginx
+        build: docker/nginx/
+        depends_on:
+            - php-fpm
+        volumes:
+            - ./:/app:cached
+        ports:
+            - 8080:80
+        environment:
+            SERVER_NAME: web
+            ROOT: /app/public/
+            PHP_BACKEND: php-fpm
+
+    php-fpm:
+        image: matthiasnoback/test_first_application_development_workshop_php_fpm
+        build: docker/php-fpm/
+        user: ${HOST_UID}:${HOST_GID}
+        volumes:
+            - ./:/app:cached
+        environment:
+            APPLICATION_ENV: ${APPLICATION_ENV-development}

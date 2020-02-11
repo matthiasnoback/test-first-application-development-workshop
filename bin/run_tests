@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -eu
+
+bin/php vendor/bin/phpstan analyse
+bin/php vendor/bin/phpunit --testsuite "Unit tests" -v
+bin/php vendor/bin/phpunit --testsuite "Integration tests" -v
+bin/php vendor/bin/behat --suite acceptance -v
+APPLICATION_ENV=testing docker-compose up -d web
+bin/php vendor/bin/behat --suite system -v

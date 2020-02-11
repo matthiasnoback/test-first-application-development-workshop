@@ -1,0 +1,36 @@
+{
+    "authors": [
+        {
+            "name": "Matthias Noback",
+            "email": "matthiasnoback@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^5.0",
+        "phpunit/phpunit": "^9.0",
+        "phpstan/phpstan-beberlei-assert": "^0.12.2",
+        "phpstan/phpstan-phpunit": "^0.12.6",
+        "phpstan/phpstan": "^0.12.9",
+        "behat/mink-extension": "^2.3",
+        "behat/behat": "^3.6",
+        "behat/mink-goutte-driver": "^1.2"
+    },
+    "require": {
+        "php": ">=7.4",
+        "beberlei/assert": "^3.2",
+        "ramsey/uuid": "^3.9",
+        "roave/security-advisories": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "": ["test/Unit", "test/Integration"],
+            "Test\\Acceptance\\": "test/Acceptance",
+            "Test\\System\\": "test/System"
+        }
+    }
+}

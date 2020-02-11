@@ -1,0 +1,20 @@
+default:
+    extensions:
+        Test\System\DynamicBaseUrlExtension: ~
+        Behat\MinkExtension:
+            base_url:  'http://%web_hostname%'
+            sessions:
+                default:
+                    goutte: ~
+    suites:
+        acceptance:
+            paths: ["%paths.base%/test/Acceptance/features"]
+            contexts:
+                - Test\Acceptance\FeatureContext
+        system:
+            mink_session: default
+            paths: ["%paths.base%/test/Acceptance/features"]
+            contexts:
+                - Test\System\FeatureContext
+            filters:
+                tags: "@system"
