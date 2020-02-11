@@ -24,6 +24,7 @@
 
 - Run `bin/composer` to use Composer (e.g. `bin/composer require --dev symfony/var-dumper`).
 - Run `bin/run_tests` to run the tests.
+- Run `docker-compose up -d web` to start the web server. You can access it at <http://localhost:8080>.
 
 ## Sharing patches
 
