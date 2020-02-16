@@ -1,8 +1,8 @@
 install:
     - docker-compose pull
     - bin/composer install --prefer-dist
-    - export HOST_GID=$(id -g)
-    - export HOST_UID=$(id -u)
+    - echo HOST_GID=$(id -g) | tee -a .env
+    - echo HOST_UID=$(id -u) | tee -a .env
 
 script:
     - bin/run_tests
